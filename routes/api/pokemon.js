@@ -20,6 +20,7 @@ router.post(
   '/',
   pokemonValidations.validateCreate,
   asyncHandler(async function (req, res) {
+    debugger
     const id = await PokemonRepository.create(req.body);
     return res.redirect(`${req.baseUrl}/${id}`);
   })

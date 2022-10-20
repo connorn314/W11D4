@@ -14,10 +14,12 @@ const loadTypes = types => ({
   types
 });
 
-const addOnePokemon = pokemon => ({
+const addOnePokemon = pokemon => {
+  debugger
+  return {
   type: ADD_ONE,
   pokemon
-});
+}};
 
 export const getOnePokemon = (id) => async dispatch => {
   const response = await fetch(`/api/pokemon/${id}`);
@@ -47,17 +49,20 @@ export const getPokemonTypes = () => async dispatch => {
 };
 
 export const createPokemon = (pokemonObj) => async dispatch => {
+  debugger
+  console.log(pokemonObj)
   const response = await fetch(`/api/pokemon`, {
     method: "POST",
     body: JSON.stringify(pokemonObj),
-    header: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
+    headers: {
+      'Content-Type': 'application/json'
     }
   })
   if (response.ok) {
     const pokemon = await response.json();
+    console.log(pokemon)
     dispatch(addOnePokemon(pokemon))
+    return pokemon
   }
 }
 

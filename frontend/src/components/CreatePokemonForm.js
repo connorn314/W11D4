@@ -50,7 +50,8 @@ const CreatePokemonForm = ({ hideForm }) => {
       moves: [move1, move2]
     };
 
-    let createdPokemon = dispatch(createPokemon(payload));
+    console.log(payload)
+    let createdPokemon = await dispatch(createPokemon(payload));
     if (createdPokemon) {
       history.push(`/pokemon/${createdPokemon.id}`);
       hideForm();
@@ -113,7 +114,7 @@ const CreatePokemonForm = ({ hideForm }) => {
             <option key={type}>{type}</option>
           )}
         </select>
-        <button type="submit" onClick={(e)=>handleSubmit(e)}>Create new Pokemon</button>
+        <button type="submit">Create new Pokemon</button>
         <button type="button" onClick={handleCancelClick}>Cancel</button>
       </form>
     </section>
